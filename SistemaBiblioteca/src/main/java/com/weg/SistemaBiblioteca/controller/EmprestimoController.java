@@ -4,6 +4,7 @@ import com.weg.SistemaBiblioteca.dto.emprestimoDto.EmprestimoRequisicaoDto;
 import com.weg.SistemaBiblioteca.dto.emprestimoDto.EmprestimoRespostaDto;
 import com.weg.SistemaBiblioteca.model.Emprestimo;
 import com.weg.SistemaBiblioteca.service.EmprestimoService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class EmprestimoController {
     }
 
     @PostMapping("/emprestimos")
-    public EmprestimoRespostaDto registroEmprestimo(@RequestBody EmprestimoRequisicaoDto emprestimoRequisicaoDto) {
+    public EmprestimoRespostaDto registroEmprestimo(@Valid @RequestBody EmprestimoRequisicaoDto emprestimoRequisicaoDto) {
 
         try {
             return emprestimoService.registroEmprestimo(emprestimoRequisicaoDto);
@@ -53,7 +54,7 @@ public class EmprestimoController {
     }
 
     @PutMapping("/emprestimos/{id}")
-    public EmprestimoRespostaDto atualizarEmprestimo(@RequestBody EmprestimoRequisicaoDto emprestimoRequisicaoDto, @PathVariable Long id) {
+    public EmprestimoRespostaDto atualizarEmprestimo(@Valid @RequestBody EmprestimoRequisicaoDto emprestimoRequisicaoDto, @PathVariable Long id) {
 
         try {
             return emprestimoService.atualizarEmprestimo(emprestimoRequisicaoDto, id);

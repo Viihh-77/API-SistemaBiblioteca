@@ -4,6 +4,7 @@ import com.weg.SistemaBiblioteca.dto.livroDto.LivroRequisicaoDto;
 import com.weg.SistemaBiblioteca.dto.livroDto.LivroRespostaDto;
 import com.weg.SistemaBiblioteca.model.Livro;
 import com.weg.SistemaBiblioteca.service.LivroService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -20,7 +21,7 @@ public class LivroController {
     }
 
     @PostMapping("/livros")
-    public LivroRespostaDto cadastroLivro(@RequestBody LivroRequisicaoDto livroRequisicaoDto) {
+    public LivroRespostaDto cadastroLivro(@Valid @RequestBody LivroRequisicaoDto livroRequisicaoDto) {
 
         try {
             return livroService.cadastroLivro(livroRequisicaoDto);
@@ -42,7 +43,7 @@ public class LivroController {
     }
 
     @GetMapping("/livros/{id}")
-    public LivroRespostaDto buscaPorId(@PathVariable int id) {
+    public LivroRespostaDto buscaPorId(@Valid @PathVariable int id) {
 
         try {
             return livroService.buscarPorId(id);

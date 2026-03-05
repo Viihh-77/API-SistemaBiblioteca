@@ -4,6 +4,7 @@ import com.weg.SistemaBiblioteca.dto.usuarioDto.UsuarioRequisicaoDto;
 import com.weg.SistemaBiblioteca.dto.usuarioDto.UsuarioRespostaDto;
 import com.weg.SistemaBiblioteca.model.Usuario;
 import com.weg.SistemaBiblioteca.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/usuarios")
-    public UsuarioRespostaDto cadastroUsuario(@RequestBody UsuarioRequisicaoDto usuarioRequisicaoDto) {
+    public UsuarioRespostaDto cadastroUsuario(@Valid @RequestBody UsuarioRequisicaoDto usuarioRequisicaoDto) {
 
         try {
             return usuarioService.cadastroUsuario(usuarioRequisicaoDto);
@@ -49,7 +50,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/usuarios/{id}")
-    public UsuarioRespostaDto atualizaUsuario(@PathVariable long id, @RequestBody UsuarioRequisicaoDto usuarioRequisicaoDto) {
+    public UsuarioRespostaDto atualizaUsuario(@PathVariable long id, @Valid @RequestBody UsuarioRequisicaoDto usuarioRequisicaoDto) {
 
         try {
             return usuarioService.atualizaUsuario(usuarioRequisicaoDto,id);
